@@ -5,7 +5,7 @@ module.exports = function mysqlfetch(file, conn, queryParams, cb) {
 
   if (!(typeof file === 'String')) {
     if (file.slice(-4) !== '.sql') {
-      file = `${file}.sql`;
+      file = file + ".sql";
     }
   }
   var queryTemplate    = fs.readFileSync(file).toString();
@@ -15,5 +15,5 @@ module.exports = function mysqlfetch(file, conn, queryParams, cb) {
     if (err) throw err;
     cb(rows);
   });
-}
+};
 
