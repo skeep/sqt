@@ -1,0 +1,28 @@
+{
+  "name": "sqt",
+  "version": "0.0.1",
+  "description": "SQL Query Template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skeep/sqt.git"
+  },
+  "keywords": [
+    "MySQL",
+    "Handlebars",
+    "Template",
+    "Query"
+  ],
+  "author": "Suman Paul",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skeep/sqt/issues"
+  },
+  "homepage": "https://github.com/skeep/sqt#readme",
+  "dependencies": {
+    "handlebars": "^4.0.5"
+  }
+}
