@@ -1,5 +1,12 @@
 'use strict';
-module.exports = function mysqlfetch(file, conn, queryParams, cb) {
+/**
+ * SQL Query Template
+ * @param file relative path to the sql file
+ * @param conn MySQL Connection Object
+ * @param queryParams Object to be passed on to handlebar template
+ * @param cb Callback method to be invoked after the query returns result.
+ */
+module.exports = function sqt(file, conn, queryParams, cb) {
   var fs = require('fs');
   var HB = require('handlebars');
 
@@ -16,4 +23,3 @@ module.exports = function mysqlfetch(file, conn, queryParams, cb) {
     cb(rows);
   });
 };
-
