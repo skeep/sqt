@@ -1,6 +1,11 @@
 # sqt
 SQL Query Template
 
+Given you have a sql file at `./q/users.sql`
+```sql
+SELECT * FROM customer LIMIT {{limit}}
+```
+You could run the query from your server code as follows
 ```javascript
 
 const Hapi       = require('hapi'),
@@ -25,6 +30,7 @@ const sqt = require('sqt');
           cb          = (result) => {
             reply(result);
           };
+      // execute the query and return the result to browser    
       sqt(file, connection, queryParams, cb);
     }
   });
