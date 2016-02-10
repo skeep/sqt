@@ -1,0 +1,2 @@
+# sqt
+SQL Query Template
