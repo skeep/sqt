@@ -25,7 +25,7 @@ const sqt = require('sqt');
     method : 'GET',
     path   : '/users',
     handler: (request, reply) => {
-      let file        = './q/hb',
+      let file        = './q/users',
           queryParams = {limit: 10},
           cb          = (result) => {
             reply(result);
