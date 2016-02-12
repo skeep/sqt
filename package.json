@@ -23,6 +23,9 @@
   },
   "homepage": "https://github.com/skeep/sqt#readme",
   "dependencies": {
-    "handlebars": "^4.0.5"
+    "chalk": "^1.1.1",
+    "handlebars": "^4.0.5",
+    "lodash": "^4.3.0",
+    "q": "^1.4.1"
   }
 }
