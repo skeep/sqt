@@ -4,7 +4,7 @@ SQL Query Template
 Given you have a sql file at `./q/users.sql`
 
 ```sql
-SELECT * FROM customer LIMIT {{limit}}
+SELECT {{x}}+{{y}} as solution
 ```
 
 You could run the query from your server code as follows
@@ -17,7 +17,7 @@ const Hapi       = require('hapi'),
         host    : 'localhost',
         user    : 'root',
         password: '',
-        database: 'sakila'
+        database: 'test'
       });
 
 connection.connect();
@@ -25,17 +25,20 @@ server.connection({port: 3000});
 const sqt = require('sqt');
   server.route({
     method : 'GET',
-    path   : '/users',
-    handler: (request, reply) => {
-      let file        = './q/users',
-          queryParams = {limit: 10},
-          cb          = (result) => {
+    path   : '/canary',
+    handler: function (request, reply) {
+      var files       = 'q/mul',
+          queryParams = {x: 5, y: 10},
+          cb          = function (result) {
             reply(result);
           };
-      // execute the query and return the result to browser    
-      sqt(file, connection, queryParams, cb);
+      try {
+        sqt(connection, files, queryParams, cb);
+      } catch (e) {
+        reply(e);
+      }
     }
-  }); 
+  });
 ```
 
 Multiple queries can also be provided as below.
