@@ -1,6 +1,6 @@
 {
   "name": "sqt",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "SQL Query Template",
   "main": "index.js",
   "scripts": {
