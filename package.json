@@ -1,40 +1,40 @@
 {
-  "name"           : "sqt",
-  "version"        : "0.0.7",
-  "description"    : "SQL Query Template",
-  "main"           : "index.js",
-  "scripts"        : {
-    "test"    : "./node_modules/.bin/mocha tests/tests.js --reporter spec",
+  "name": "sqt",
+  "version": "0.0.8",
+  "description": "SQL Query Template",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tests/tests.js --reporter spec",
     "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- tests/ -R spec"
   },
-  "repository"     : {
+  "repository": {
     "type": "git",
-    "url" : "git+https://github.com/skeep/sqt.git"
+    "url": "git+https://github.com/skeep/sqt.git"
   },
-  "keywords"       : [
+  "keywords": [
     "MySQL",
     "Handlebars",
     "Template",
     "Query"
   ],
-  "author"         : "Suman Paul",
-  "license"        : "MIT",
-  "bugs"           : {
+  "author": "Suman Paul",
+  "license": "MIT",
+  "bugs": {
     "url": "https://github.com/skeep/sqt/issues"
   },
-  "homepage"       : "https://github.com/skeep/sqt#readme",
-  "dependencies"   : {
-    "chalk"     : "^1.1.1",
+  "homepage": "https://github.com/skeep/sqt#readme",
+  "dependencies": {
+    "chalk": "^1.1.1",
     "handlebars": "^4.0.5",
-    "lodash"    : "^4.3.0",
-    "q"         : "^1.4.1"
+    "lodash": "^4.3.0",
+    "q": "^1.4.1"
   },
   "devDependencies": {
-    "chai"            : "^3.5.0",
+    "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
-    "istanbul"        : "^0.4.2",
-    "mocha"           : "^2.4.5",
-    "mysql"           : "^2.10.2",
-    "sinon"           : "^1.17.3"
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5",
+    "mysql": "^2.10.2",
+    "sinon": "^1.17.3"
   }
 }
