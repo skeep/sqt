@@ -56,11 +56,11 @@ module.exports = function sqt(conn, files, queryParams, cb) {
    * @returns {*|promise}
    * @private
    */
-  function _getDeferedPromise(file, params) {
-    var defered     = Q.defer(),
+  function _getDeferredPromise(file, params) {
+    var deferred    = Q.defer(),
         queryString = _compile(file, params);
-    conn.query(queryString, defered.makeNodeResolver());
-    return defered.promise;
+    conn.query(queryString, deferred.makeNodeResolver());
+    return deferred.promise;
   }
 
   /**
@@ -73,15 +73,19 @@ module.exports = function sqt(conn, files, queryParams, cb) {
   function _executeQueue(files, queryParams, isSingleQuery) {
     var queryQueue = [];
     files.forEach(function (file, index) {
-      queryQueue.push(_getDeferedPromise(file, queryParams[index]));
+      queryQueue.push(_getDeferredPromise(file, queryParams[index]));
     });
     var response = [];
-    Q.all(queryQueue).then(function (results) {
+    Q.allSettled(queryQueue).then(function (results) {
       _.each(results, function (res) {
-        response.push(res[0]);
+        if (res.state === 'fulfilled') {
+          response.push({state: res.state, data: res.value[0]});
+        } else {
+          response.push({state: res.state, message: res.reason});
+        }
       });
       if (isSingleQuery) {
-        cb(response[0])
+        cb(response[0]);
       } else {
         cb(response);
       }
