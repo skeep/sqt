@@ -15,10 +15,27 @@ server.connection({port: 3000});
 
 server.route({
   method : 'GET',
-  path   : '/moreusers',
+  path   : '/canary',
   handler: function (request, reply) {
-    var files       = ['q/hb', 'q/hb.sql'],
-        queryParams = [{limit: 1}, {limit: 2}],
+    var files       = 'q/add',
+        queryParams = {x: 5, y: 10},
+        cb          = function (result) {
+          reply(result);
+        };
+    try {
+      sqt(connection, files, queryParams, cb);
+    } catch (e) {
+      reply(e);
+    }
+  }
+});
+
+server.route({
+  method : 'GET',
+  path   : '/canarynext',
+  handler: function (request, reply) {
+    var files       = ['q/add', 'q/multiply'],
+        queryParams = [{x: 5, y: 10}, {x: 5, y: 10}],
         cb          = function (result) {
           reply(result);
         };
@@ -34,8 +51,25 @@ server.route({
   method : 'GET',
   path   : '/users',
   handler: function (request, reply) {
-    var files       = 'q/hb',
+    var files       = 'q/hbs',
         queryParams = {limit: 5},
+        cb          = function (result) {
+          reply(result);
+        };
+    try {
+      sqt(connection, files, queryParams, cb);
+    } catch (e) {
+      reply(e);
+    }
+  }
+});
+
+server.route({
+  method : 'GET',
+  path   : '/moreusers',
+  handler: function (request, reply) {
+    var files       = ['q/hb', 'q/hb.sql'],
+        queryParams = [{limit: 1}, {limit: 2}],
         cb          = function (result) {
           reply(result);
         };
