@@ -1,7 +1,7 @@
 # sqt (SQL Query Template)
 
 [![Coverage Status](https://coveralls.io/repos/github/skeep/sqt/badge.svg?branch=master)](https://coveralls.io/github/skeep/sqt?branch=master)
-
+[![Build Status](https://travis-ci.org/skeep/sqt.svg?branch=master)](https://travis-ci.org/skeep/sqt)
 Given you have two sql files:
  
 ### add.sql
