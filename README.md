@@ -1,5 +1,7 @@
 # sqt (SQL Query Template)
 
+[![Coverage Status](https://coveralls.io/repos/github/skeep/sqt/badge.svg?branch=master)](https://coveralls.io/github/skeep/sqt?branch=master)
+
 Given you have two sql files:
  
 ### add.sql
