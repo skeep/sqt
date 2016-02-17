@@ -1,18 +1,22 @@
-# sqt
-SQL Query Template
+# sqt (SQL Query Template)
 
-Given you have a sql file at `./q/users.sql`
-
+Given you have two sql files:
+ 
+### add.sql
 ```sql
-SELECT {{x}}+{{y}} as solution
+SELECT {{x}}+{{y}} as solution;
 ```
 
-You could run the query from your server code as follows
+### multiply.sql
+```sql
+SELECT {{x}}*{{y}} as solution;
+```
+
+
+You could run the query as follows : 
 
 ```javascript
-const Hapi       = require('hapi'),
-      server     = new Hapi.Server(),
-      mysql      = require('mysql'),
+const mysql      = require('mysql'),
       connection = mysql.createConnection({
         host    : 'localhost',
         user    : 'root',
@@ -21,43 +25,42 @@ const Hapi       = require('hapi'),
       });
 
 connection.connect();
-server.connection({port: 3000});
-const sqt = require('sqt');
-  server.route({
-    method : 'GET',
-    path   : '/canary',
-    handler: function (request, reply) {
-      var files       = 'q/mul',
-          queryParams = {x: 5, y: 10},
-          cb          = function (result) {
-            reply(result);
-          };
-      try {
-        sqt(connection, files, queryParams, cb);
-      } catch (e) {
-        reply(e);
-      }
-    }
-  });
+const sqt         = require('sqt');
+var files         = 'q/add',
+      queryParams = {x: 5, y: 10},
+      cb          = function (result) {
+        console.log(result);    // {solution : 15}
+      };
+try {
+  sqt(connection, files, queryParams, cb);
+} catch (e) {
+  console.log(e);
+}
+connection.end();
 ```
 
 Multiple queries can also be provided as below.
 
 ```javascript
-server.route({
-  method : 'GET',
-  path   : '/moreusers',
-  handler: function (request, reply) {
-    var files       = ['q/hb', 'q/hb.sql'],
-        queryParams = [{limit: 1}, {limit: 2}],
-        cb          = function (result) {
-          reply(result);
-        };
-    try {
-      sqt(connection, files, queryParams, cb);
-    } catch (e) {
-      reply(e);
-    }
-  }
-});
+const mysql      = require('mysql'),
+      connection = mysql.createConnection({
+        host    : 'localhost',
+        user    : 'root',
+        password: '',
+        database: 'test'
+      });
+
+connection.connect();
+const sqt         = require('sqt');
+var files         = ['q/add', 'q/multiply.sql'],
+      queryParams = [{x: 5, y: 10}, {x: 5, y: 10}],
+      cb          = function (result) {
+        console.log(result);    // [{solution : 15}, {solution : 50}]
+      };
+try {
+  sqt(connection, files, queryParams, cb);
+} catch (e) {
+  console.log(e);
+}
+connection.end();
 ```
