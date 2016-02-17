@@ -4,8 +4,8 @@
   "description": "SQL Query Template",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha tests/tests.js --reporter spec",
-    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- tests/ -R spec"
+    "test": "./node_modules/.bin/mocha specs/ --reporter spec",
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- specs/ -R spec"
   },
   "repository": {
     "type": "git",

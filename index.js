@@ -13,12 +13,12 @@ module.exports = function sqt(conn, files, queryParams, cb) {
   var _     = require('lodash');
   var chalk = require('chalk');
 
-  var logErrror = chalk.bold.red;
+  //var logError = chalk.bold.red;
 
   function handleError(error) {
-    error = '\u274C  [sqt] : ' + error;
-    console.log(logErrror(error));
-    throw  error;
+    //error = '\u274C  [sqt] : ' + error;
+    error = '[sqt] : ' + error;
+    throw new TypeError(error);
   }
 
   /**
@@ -105,22 +105,22 @@ module.exports = function sqt(conn, files, queryParams, cb) {
             });
             _executeQueue(files, queryParams);
           } else {
-            throw 'all files are not valid';
+            handleError('All files are not valid');
           }
         } else {
-          throw 'Query params and file list length do not match';
+          handleError('Query params and file list length do not match');
         }
       } else {
-        throw 'Query parameters should also be an array';
+        handleError('Query parameters should also be an array');
       }
     } else {
-      throw 'no files specified';
+      handleError('No files specified');
     }
   } else if (_.isString(files)) {
     if (_.isObject(queryParams)) {
       _executeQueue([_addDotSQL(files)], [queryParams], true);
     } else {
-      throw 'Expect single query parameter as only one query is to be executed'
+      handleError('Expect single query parameter as only one query is to be executed');
     }
   } else {
     handleError('Expect an [array] or "string" of file(s) but got ' + JSON.stringify(files));
